@@ -532,12 +532,10 @@ plt.plot(vento)
 movmean = lambda x, w: np.convolve(x, np.ones(w), 'valid') / w
 
 # Plotando:
-plt.plot(np.array(patm))
-plt.plot(movmean(patm,200))
+plt.plot(np.array(patm)),plt.plot(movmean(patm,200))
 plt.show()
 
-plt.plot(np.array(tempar))
-plt.plot(movmean(tempar,200))
+plt.plot(np.array(tempar)),plt.plot(movmean(tempar,200))
 plt.show()
 
 plt.plot(np.array(vento))
@@ -552,7 +550,6 @@ print('vento == movmean_vento ?', vento.shape == movmean(vento,200).shape)
 
 # Segunda opção: usando bottleneck function move_mean
 import bottleneck as bn
-
 mvmean_bn = lambda x: bn.move_mean(x, window = 200, min_count = None)
 
 # Plotando:
@@ -580,9 +577,7 @@ print('vento == movmean_vento ?', vento.shape == mvmean_bn(vento).shape)
 
 # Vamos testar com o Pandas
 data = np.array([10,5,8,9,15,22,26,11,15,16,18,7])
-
 d = pd.Series(data)
-
 print(patm.rolling(200).mean())
 
 # Plotando:
