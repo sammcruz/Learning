@@ -219,27 +219,37 @@ print(folhas.head())
 print(folhas.tail())
 
 folhas = pd.read_excel(path+'folhas_Especie_TIPO_FISIO_MEDIA.xlsx', header = 0)
+
+# Recurso do pandas para criar datetime
 datas = pd.date_range('2008-08', '2020-01', freq = 'M')
 print(datas)
+
+# Mudando o formato da data
 anomes=datas.strftime('%Y-%m')
 print(anomes)
 
+# inserindo a coluna datetime no dataframe folhas
 folhas['datetime']=anomes
 folhas.columns
 
+# Vamos colocar a coluna datetime como o nosso índice
 folhas.set_index('datetime', inplace=True)
 folhas.loc['2008-09']
 
+# Apagando as colunas Ano e Mes
 folhas.drop(columns=['Anos', 'Mes'], inplace = True)
 
 folhas.head()
 
+# renomeando as colunas franja_rh e bacia_rh
 folhas.rename(columns={'franja_rh': 'x', 'bacia_rh': 'y'}, inplace=True)
 
+# Recurso loc, usado para localizar pelo indice
+folhas.loc['2008-09']
 
-
-
-
+# Exemplo Samantha (buscar valor dentro de colunas sem ser a coluna index)
+folhas.x == 19.111680
+folhas[folhas.x == 19.111680]
 
 
 
